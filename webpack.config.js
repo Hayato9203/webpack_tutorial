@@ -1,4 +1,5 @@
 const htmlWebpackPlugin = require('html-webpack-plugin')
+// 把页面src引入文件的方式，改成用script标签嵌入的方式，减少http请求(提高加载性能）
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const path = require('path')
 
@@ -21,7 +22,7 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             // 全部内嵌
-            // inlineSource: '.(js|css)$',
+            inlineSource: '.(js|css)$',
             // 生成的文件名
             filename: 'a.html',
             // 使用的模板
@@ -35,7 +36,7 @@ module.exports = {
             }
         }),
         new htmlWebpackPlugin({
-            // inlineSource: '.(js|css)$',
+            inlineSource: '.(js|css)$',
             filename: 'b.html',
             template: 'index.html',
             chunks: ['main', 'b'],
@@ -43,14 +44,14 @@ module.exports = {
             title: 'this is b.html'
         }),
         new htmlWebpackPlugin({
-            // inlineSource: '.(js|css)$',
+            inlineSource: '.(js|css)$',
             filename: 'c.html',
             template: 'index.html',
             excludeChunks: ['main', 'a', 'b'],
             inject: 'head',
             title: 'this is c.html'
         }),
-        // new HtmlWebpackInlineSourcePlugin()
+        new HtmlWebpackInlineSourcePlugin()
     ],
     module: {
         rules: [
