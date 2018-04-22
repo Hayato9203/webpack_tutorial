@@ -1,4 +1,5 @@
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const path = require('path')
 
 module.exports = {
@@ -13,31 +14,43 @@ module.exports = {
         // 输出的绝对路径
         path: path.resolve(__dirname, 'dist'),
         // 上面entry的文件名
-        filename: 'js/[name]-[chunkhash].js',
+        filename: 'js/[name]-[chunkhash].bundle.js',
         // entry的前缀
         publicPath: 'http://cdn.com/'
     },
     plugins: [
         new htmlWebpackPlugin({
+            // 全部内嵌
+            // inlineSource: '.(js|css)$',
             // 生成的文件名
             filename: 'a.html',
             // 使用的模板
             template: 'index.html',
-            inject: false,
-            title: 'this is a.html'
+            inject: 'body',
+            title: 'this is a.html',
+            chunks: ['main', 'a'],
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            }
         }),
         new htmlWebpackPlugin({
+            // inlineSource: '.(js|css)$',
             filename: 'b.html',
             template: 'index.html',
-            inject: false,
+            chunks: ['main', 'b'],
+            inject: 'body',
             title: 'this is b.html'
         }),
         new htmlWebpackPlugin({
+            // inlineSource: '.(js|css)$',
             filename: 'c.html',
             template: 'index.html',
-            inject: false,
+            excludeChunks: ['main', 'a', 'b'],
+            inject: 'head',
             title: 'this is c.html'
-        })
+        }),
+        // new HtmlWebpackInlineSourcePlugin()
     ],
     module: {
         rules: [

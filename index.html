@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+    <!-- 每个html文件中都包含这个main.js文件 -->
 </head>
 <body>
-    <% for (let key in htmlWebpackPlugin.files) {%>
-    <%= key %> : <%= JSON.stringify(htmlWebpackPlugin.files[key]) %>
-    <%}%>
+    
 </body>
 </html>
