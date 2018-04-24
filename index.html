@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <!-- 每个html文件中都包含这个main.js文件 -->
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </head>
 <body>
-    
+    <% for (key in htmlWebpackPlugin.files.chunks) {%>
+        <%= key %>
+        <% if (!(new RegExp('main').test(key))) %>
+            <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
+    <%}%>
 </body>
 </html>

@@ -22,12 +22,12 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             // 全部内嵌
-            inlineSource: '.(js|css)$',
+            // inlineSource: '.(js|css)$',
             // 生成的文件名
             filename: 'a.html',
             // 使用的模板
             template: 'index.html',
-            inject: 'body',
+            inject: false,
             title: 'this is a.html',
             chunks: ['main', 'a'],
             minify: {
@@ -36,33 +36,41 @@ module.exports = {
             }
         }),
         new htmlWebpackPlugin({
-            inlineSource: '.(js|css)$',
+            // inlineSource: '.(js|css)$',
             filename: 'b.html',
             template: 'index.html',
-            chunks: ['main', 'b'],
-            inject: 'body',
+            chunks: ['main', 'a', 'b'],
+            inject: false,
             title: 'this is b.html'
         }),
         new htmlWebpackPlugin({
-            inlineSource: '.(js|css)$',
+            // inlineSource: '.(js|css)$',
+            // filename: 'c.html',
+            // template: 'index.html',
+            // chunks: ['main', 'a', 'b'],
+            // inject: true,
+            // title: 'this is c.html'
+
+            // inlineSource: '.(js|css)$',
             filename: 'c.html',
             template: 'index.html',
-            excludeChunks: ['main', 'a', 'b'],
-            inject: 'head',
+            excludeChunks: ['a', 'b'],
+            inject: false,
             title: 'this is c.html'
         }),
-        new HtmlWebpackInlineSourcePlugin()
+        // new HtmlWebpackInlineSourcePlugin()
     ],
     module: {
-        rules: [
-            {
-                // css打包
-                test: /\.css$/,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" }
-                ]
-            }
-        ]
+        rules: [{
+            // css打包
+            test: /\.css$/,
+            use: [{
+                    loader: "style-loader"
+                },
+                {
+                    loader: "css-loader"
+                }
+            ]
+        }]
     }
 }
