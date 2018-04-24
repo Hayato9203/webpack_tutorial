@@ -10,8 +10,9 @@
 <body>
     <% for (key in htmlWebpackPlugin.files.chunks) {%>
         <%= key %>
-        <% if (!(new RegExp('main').test(key))) %>
+        <% if (!((new RegExp('main').test(key)))) {%>
             <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
+        <%}%>
     <%}%>
 </body>
 </html>
