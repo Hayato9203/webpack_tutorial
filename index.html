@@ -9,7 +9,6 @@
 </head>
 <body>
     <% for (key in htmlWebpackPlugin.files.chunks) {%>
-        <%= key %>
         <% if (key.indexOf('main') == -1) {%>
             <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
         <%}%>
