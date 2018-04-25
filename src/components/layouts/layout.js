@@ -1,4 +1,5 @@
-import template from './layout.less'
+import './layout.less'
+import template from './layout.html'
 
 function layout () {
   return {
