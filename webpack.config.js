@@ -22,19 +22,21 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                // css插入html和js文件处理
                 use: ["style-loader", {
                     loader: 'css-loader',
-                    options: {
-                        importLoaders: 1
-                    }
+                    // 指定css-loader之前有1个postcss-loader还要加载,让css文件中的@import也经过该loader
+                    options: { importLoaders: 1 }
                 }, {
                     loader: 'postcss-loader',
                     options: {
                         ident: 'postcss',
-                        config: {path: path.resolve(__dirname, 'postcss.config.js')},
+                        config: {
+                            path: path.resolve(__dirname, 'postcss.config.js')
+                        },
                         plugins: [
-                            require('autoprefixer')({ browsers: ['last 5 versions'] }),
+                            require('autoprefixer')({
+                                browsers: ['last 5 versions']
+                            }),
                             require('cssnano')()
                         ]
                     }
