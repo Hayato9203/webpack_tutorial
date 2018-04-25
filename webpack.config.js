@@ -11,13 +11,19 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "babel-loader",
-            query: {
-                presets: ['latest']
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                query: {
+                    presets: ['latest']
+                },
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: 'css-loader'
             }
-        }]
+        ]
     },
     plugins: [
         new htmlWebpackPlugin({
