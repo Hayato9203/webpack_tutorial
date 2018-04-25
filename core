@@ -1,0 +1,10 @@
+autoprefixer - 
+babel-core&babel-loader - 将高级javascript语言转换成浏览器能够识别的es5版本
+babel-minify-webpack-plugin - js压缩
+babel-preset-latest - babel转换js到最新的es版本
+css-loader&style-loader - 处理js的css文件和html嵌入css,注意inject:false,不然会两次引入style
+html-webpack-inline-source-plugin - 内联js文件,减少http请求,优化性能
+html-webpack-plugin - 联系webpack.config.js与模板index.html
+postcss-loader - 
+webpack-cli&webpack - webpack打包工具集
+postcss-loader&postcss-import&autoprefixer&cssnano - 自动将css特殊效果转换成不同浏览器能够识别的类型

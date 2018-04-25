@@ -12,3 +12,6 @@ ul,li{
     margin: 0;
     list-style: none
 }
+.flex-div{
+    display: flex;
+}
