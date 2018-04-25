@@ -1,9 +1,9 @@
-// import template from './layout.html'
+import template from './layout.less'
 
 function layout () {
   return {
     name: 'layout',
-    // template: template
+    template: template
   }
 }
 
