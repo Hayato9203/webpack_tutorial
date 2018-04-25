@@ -8,10 +8,6 @@
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </head>
 <body>
-    <% for (key in htmlWebpackPlugin.files.chunks) {%>
-        <% if (key.indexOf('main') == -1) {%>
-            <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
-        <%}%>
-    <%}%>
+
 </body>
 </html>

@@ -13,6 +13,7 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
+                include: /src/,
                 loader: "babel-loader",
                 query: {
                     presets: ['latest']
@@ -21,7 +22,8 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: 'css-loader'
+                // css插入html和js文件处理
+                use: ["style-loader", "css-loader"]
             }
         ]
     },
@@ -31,7 +33,7 @@ module.exports = {
             filename: 'index.html',
             // 使用的模板
             template: 'index.html',
-            inject: true
+            inject: false
         }),
         new MinifyPlugin()
     ],
