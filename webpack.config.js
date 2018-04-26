@@ -9,6 +9,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js',
+        // 指定dist为root
+        publicPath: './'
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -21,7 +23,9 @@ module.exports = {
         new MinifyPlugin()
     ],
     module: {
-        rules: [{
+        rules: [
+            // js文件es转换
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 include: /src/,
@@ -30,6 +34,7 @@ module.exports = {
                     presets: ['latest']
                 },
             },
+            // 处理css文件
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
@@ -55,49 +60,33 @@ module.exports = {
                     }
                 }]
             },
+            // 处理less,注意要有css-loader,不然不会把postcss转换后的的css中的url()绑定静态资源
             {
                 test: /\.less$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        ident: 'postcss',
-                        config: {
-                            path: path.resolve(__dirname, 'postcss.config.js')
-                        },
-                        plugins: [
-                            require('autoprefixer')({
-                                browsers: ['last 5 versions']
-                            }),
-                            require('cssnano')()
-                        ]
-                    }
-                }, {
-                    loader: 'less-loader'
-                }]
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             },
+            // 处理scss
             {
                 test: /\.scss$/,
-                loader: 'style-loader!postcss-loader!sass-loader'
-            }, {
+                loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+            },
+            // 处理html模板
+            {
                 test: /\.html$/,
                 exclude: path.resolve(__dirname, 'index.html'),
                 loader: 'html-loader'
-            }, {
+            },
+            // 处理ejs模板
+            {
                 test: /\.ejs$/,
                 include: path.resolve(__dirname, 'src'),
                 loader: 'ejs-loader'
-            }, {
+            },
+            // 处理静态资源
+            {
                 test: /\.(jpg|png|gif|svg)$/i,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        outputPath: 'images/',
-                        name: '[name].[ext]'
-                    }  
-                }]
-
+                // 使用url-loader当文件>200K时，直接给file-loader,不然就生成base64编码嵌入js中
+                use: ['url-loader?limit=20000&name=images/[name].[hash:8].[ext]']
             }
         ]
     }

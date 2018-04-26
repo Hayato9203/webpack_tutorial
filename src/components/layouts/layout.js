@@ -1,5 +1,4 @@
 import './layout.less'
-import '../../assets/a.jpg'
 
 // 这里引入一个function,不再是一个html字符串
 import template from './layout.ejs'
