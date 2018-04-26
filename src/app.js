@@ -2,10 +2,13 @@ import Layout from './components/layouts/layout.js'
 import './styles/style.css'
 
 const App = function () {
-  var dom = document.getElementById('app')  
+  var dom = document.getElementById('app')
   addLoadEvent(function () {
     let layout = new Layout()
-    dom.innerHTML = layout.template
+    dom.innerHTML = layout.template({
+      title: 'TEST',
+      arr: [2, 4, 5, 6.2, 5]
+    })
   })
 }
 

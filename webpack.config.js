@@ -79,10 +79,14 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: 'style-loader!postcss-loader!sass-loader'
-            },{
+            }, {
                 test: /\.html$/,
                 exclude: path.resolve(__dirname, 'index.html'),
                 loader: 'html-loader'
+            },{
+                test: /\.ejs/,
+                include: path.resolve(__dirname, 'src'),
+                loader: 'ejs-loader'
             }
         ]
     }
