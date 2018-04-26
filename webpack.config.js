@@ -4,6 +4,7 @@ const MinifyPlugin = require("babel-minify-webpack-plugin")
 const path = require('path')
 
 module.exports = {
+    devtool: 'eval-source-map',
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),

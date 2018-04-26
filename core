@@ -10,3 +10,4 @@ webpack-cli&webpack - webpack打包工具集
 postcss-loader&postcss-import&autoprefixer&cssnano - 自动将css特殊样式转换成不同浏览器能够识别的样式
 less&less-loader - 将less转换成css
 html-loader - 处理js文件中加载的html模板
+ejs-loader - 处理js文件中加载的ejs模板

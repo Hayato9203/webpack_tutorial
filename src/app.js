@@ -12,6 +12,7 @@ const App = function () {
   })
 }
 
+
 function addLoadEvent(func) {
   var oldOnload = window.onload
   if (typeof window.onload != 'function')
