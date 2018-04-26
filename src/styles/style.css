@@ -1,9 +1,5 @@
 @import './flex.css';
 
-body{
-    background-color: cadetblue;
-}
-
 html,body{
     padding: 0;
     margin: 0;

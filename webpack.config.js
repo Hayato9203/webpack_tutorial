@@ -84,10 +84,20 @@ module.exports = {
                 test: /\.html$/,
                 exclude: path.resolve(__dirname, 'index.html'),
                 loader: 'html-loader'
-            },{
-                test: /\.ejs/,
+            }, {
+                test: /\.ejs$/,
                 include: path.resolve(__dirname, 'src'),
                 loader: 'ejs-loader'
+            }, {
+                test: /\.(jpg|png|gif|svg)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'images/',
+                        name: '[name].[ext]'
+                    }  
+                }]
+
             }
         ]
     }
