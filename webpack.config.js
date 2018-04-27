@@ -5,6 +5,7 @@ const path = require('path')
 
 module.exports = {
     devtool: 'eval-source-map',
+    mode: 'development',
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -14,13 +15,24 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
+            // 内联js与css
+            inlineSource: '.(js|css)$',
             // 生成的文件名
             filename: 'index.html',
             // 使用的模板
             template: 'index.html',
-            inject: true
+            inject: true,
+            // 精简html
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                conservativeCollapse: true
+            }
         }),
-        new MinifyPlugin()
+        // 压缩js
+        new MinifyPlugin(),
+        // 内联js与css
+        new HtmlWebpackInlineSourcePlugin()
     ],
     module: {
         rules: [
