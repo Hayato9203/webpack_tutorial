@@ -86,7 +86,33 @@ module.exports = {
             {
                 test: /\.(jpg|png|gif|svg)$/i,
                 // 使用url-loader当文件>200K时，直接给file-loader,不然就生成base64编码嵌入js中
-                use: ['url-loader?limit=20000&name=images/[name].[hash:8].[ext]']
+                use: ['url-loader?limit=10000&name=images/[name].[hash:8].[ext]',
+                    // 'image-webpack-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 50
+                            },
+                            optipng: {
+                                enabled: true,
+                                optimizationLevel: 3
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                                optimizationLevel: 2
+                            },
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    }
+                ]
             }
         ]
     }

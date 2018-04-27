@@ -11,3 +11,4 @@ postcss-loader&postcss-import&autoprefixer&cssnano - 自动将css特殊样式转
 less&less-loader - 将less转换成css
 html-loader - 处理js文件中加载的html模板
 ejs-loader - 处理js文件中加载的ejs模板
+url-loader - 处理静态资源如图片等
