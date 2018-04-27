@@ -8,7 +8,8 @@ const nodeExternals = require('webpack-node-externals')
 module.exports = {
     devtool: 'eval-source-map',
     mode: 'production',
-    entry: './src/app.js',
+    // 处理async/await
+    entry: ['babel-polyfill', './src/app.js'],
     target: 'node',
     externals: [nodeExternals()],
     output: {
