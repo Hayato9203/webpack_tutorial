@@ -1,11 +1,12 @@
 const htmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
-const MinifyPlugin = require("babel-minify-webpack-plugin")
+// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
+// const MinifyPlugin = require("babel-minify-webpack-plugin")
 const path = require('path')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     devtool: 'eval-source-map',
-    mode: 'development',
+    mode: 'production',
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -16,7 +17,7 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             // 内联js与css
-            inlineSource: '.(js|css)$',
+            // inlineSource: '.(js|css)$',
             // 生成的文件名
             filename: 'index.html',
             // 使用的模板
@@ -29,10 +30,11 @@ module.exports = {
                 conservativeCollapse: true
             }
         }),
-        // 压缩js
-        new MinifyPlugin(),
-        // 内联js与css
-        new HtmlWebpackInlineSourcePlugin()
+        // // 压缩js
+        // new MinifyPlugin(),
+        // // 内联js与css
+        // new HtmlWebpackInlineSourcePlugin()
+        new UglifyJSPlugin()
     ],
     module: {
         rules: [
