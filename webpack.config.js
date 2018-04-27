@@ -3,11 +3,14 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 // const MinifyPlugin = require("babel-minify-webpack-plugin")
 const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
     devtool: 'eval-source-map',
     mode: 'production',
     entry: './src/app.js',
+    target: 'node',
+    externals: [nodeExternals()],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js',
